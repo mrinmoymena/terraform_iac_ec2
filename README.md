@@ -1,4 +1,4 @@
-# IAC using Teeraform
+# IAC using Terraform
 
 This repo contain following 
   - Terraform script to create infra in AWS like vpc, subnets,EC2 etc.
