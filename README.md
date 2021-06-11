@@ -2,7 +2,7 @@
 
 This repo contain following 
   - Terraform script to create infra in AWS like vpc, subnets,EC2 etc.
-  - This EC2 machines are configured and provisioned with required software using userdata.
+  - These EC2 machines are configured and provisioned with required software using userdata.
 
 
 ## 1. Install all required dependencies
