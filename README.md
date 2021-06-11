@@ -25,9 +25,8 @@ This repo contain following
     run following command to create vpc, subnets, EC2 etc. 
    
     - terraform init
-    - terraform apply #Currently no S3 bucket provisioned for terraform state management
-    - State file is managed in local machine which can be maintained in S3 as per environment using workspace
-    - User asks to pass existing key pair name
-    - After passing key pair all required resources will be created
-    - ec2_jenkins EC2 is be created in public subnet
-    - ec2_client EC2 is created in private subnet 
+    - terraform apply #User is asked to pass existing key pair name
+- State file is managed in local machine which can be maintained in S3 as per environment using workspace
+- After passing key pair all required resources will be created
+- ec2_jenkins EC2 is be created in public subnet
+- ec2_client EC2 is created in private subnet 
