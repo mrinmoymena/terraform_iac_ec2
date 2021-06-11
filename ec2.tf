@@ -1,8 +1,8 @@
 resource "aws_instance" "ec2_public" {
-  ami                         = "ami-0c1a7f89451184c8b" # ap-sounth-1
-  instance_type               = "t2.micro"
+  ami                         = var.ami # ap-sounth-1
+  instance_type               = var.instance_type
   associate_public_ip_address = true
-  key_name                    = "ec2ubuntu"
+  key_name                    = var.key_pair
   security_groups             = [aws_security_group.ec2_infra_sg_public.id]
   subnet_id                   = aws_subnet.ec2_infra_sn_public.id
   #user_data = file(“./install_jenkins.sh”)
@@ -27,7 +27,7 @@ resource "aws_instance" "ec2_public" {
 resource "aws_instance" "ec2_private" {
   ami                         = "ami-0c1a7f89451184c8b" # ap-sounth-1
   instance_type               = "t2.micro"
-  key_name                    = "ec2ubuntu"
+  key_name                    = var.key_pair
   security_groups             = [aws_security_group.ec2_infra_sg_private.id]
   subnet_id                   = aws_subnet.ec2_infra_sn_private.id
   user_data = <<-EOL

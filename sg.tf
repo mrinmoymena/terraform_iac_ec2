@@ -4,9 +4,17 @@ resource "aws_security_group" "ec2_infra_sg_public" {
     vpc_id      = aws_vpc.vpc_ec2_infra.id
 
     ingress {
-        from_port       = 0
-        to_port         = 0
-        protocol        = "-1"
+        from_port       = 8080
+        to_port         = 8080
+        protocol        = "tcp"
+        cidr_blocks     = ["0.0.0.0/0"]
+        ipv6_cidr_blocks     = ["::/0"]
+    }
+
+   ingress {
+        from_port       = 22
+        to_port         = 22
+        protocol        = "tcp"
         cidr_blocks     = ["0.0.0.0/0"]
         ipv6_cidr_blocks     = ["::/0"]
     }
@@ -33,7 +41,7 @@ resource "aws_security_group" "ec2_infra_sg_private" {
     ingress {
         description      = "SSH from VPC"
         from_port        = 22
-        to_port          = 443
+        to_port          = 22
         protocol         = "tcp"
         cidr_blocks      = [aws_vpc.vpc_ec2_infra.cidr_block]
     }

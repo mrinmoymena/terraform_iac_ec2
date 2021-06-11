@@ -42,3 +42,35 @@ resource "aws_route_table_association" "ec2_infra_route_table_asso" {
   subnet_id      = aws_subnet.ec2_infra_sn_public.id
   route_table_id = aws_route_table.ec2_infra_route_table.id
 }
+
+resource "aws_eip" "nat_eip" {
+  vpc        = true
+  depends_on = [aws_internet_gateway.ec2_infra_ig]
+}
+
+resource "aws_nat_gateway" "ec2_infra_nat" {
+  allocation_id = aws_eip.nat_eip.id
+  subnet_id     = aws_subnet.ec2_infra_sn_public.id
+  depends_on    = [aws_internet_gateway.ec2_infra_ig]
+  tags = {
+    Name        = "nat gateway"
+  }
+}
+
+resource "aws_route_table" "ec2_infra_route_table_private" {
+  vpc_id = aws_vpc.vpc_ec2_infra.id
+  tags = {
+    Name        = "private-route-table"
+  }
+}
+
+resource "aws_route" "private_nat_gateway" {
+  route_table_id         = aws_route_table.ec2_infra_route_table_private.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.ec2_infra_nat.id
+}
+
+resource "aws_route_table_association" "ec2_infra_route_table_asso_private" {
+  subnet_id      = aws_subnet.ec2_infra_sn_private.id
+  route_table_id = aws_route_table.ec2_infra_route_table_private.id
+}
