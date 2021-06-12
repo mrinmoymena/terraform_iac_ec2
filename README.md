@@ -1,8 +1,8 @@
-# IAC using Teeraform
+# IAC using Terraform
 
 This repo contain following 
   - Terraform script to create infra in AWS like vpc, subnets,EC2 etc.
-  - This EC2 machines are configured and provisioned with required software using userdata.
+  - These EC2 machines are configured and provisioned with required software using userdata.
 
 
 ## 1. Install all required dependencies
@@ -28,5 +28,5 @@ This repo contain following
     - terraform apply #User is asked to pass existing key pair name
 - State file is managed in local machine which can be maintained in S3 as per environment using workspace
 - After passing key pair all required resources will be created
-- ec2_jenkins EC2 is be created in public subnet
+- ec2_jenkins EC2 is created in public subnet
 - ec2_client EC2 is created in private subnet 
