@@ -1,3 +1,18 @@
+variable "region" {
+  default = "ap-south-1"
+  type    = string
+}
+
+variable "shared_credentials_file" {
+  default = "/.aws/credentials"
+  type    = string
+}
+
+variable "profile" {
+  default = "default"
+  type    = string
+}
+
 variable "key_pair" {
   #default   = "ec2ubuntu"
   description= "Create key pair for EC2 in aws and provide the name\n" 

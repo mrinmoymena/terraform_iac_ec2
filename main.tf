@@ -1,7 +1,7 @@
 provider "aws" {
-  region  = "ap-south-1"
-  shared_credentials_file 	= "~/.aws/credentials"
-  profile                	= "default"
+  region  = var.region
+  shared_credentials_file 	= var.shared_credentials_file
+  profile                	= var.profile
 }
 
 # Using these data sources allows the configuration to be
